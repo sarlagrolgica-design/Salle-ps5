@@ -42,6 +42,10 @@ Pour changer de téléphone : installer l'appli sur le nouveau, puis Sauvegarde 
 
 Ne pas utiliser « Effacer l'historique et les données de sites » de Safari : cela efface aussi les données de l'appli.
 
+## Réinitialiser tout
+
+Plus › Sauvegarde › **Réinitialiser tout** (Admin seulement), avec le code **LB7Z**. Efface toutes les opérations (sessions, ventes, encaissements, caisse, mouvements de stock, tournois, journal) et remet à zéro les soldes des clients. Les postes, tarifs, produits (avec leur stock actuel), clients et utilisateurs sont conservés. L'appli propose de faire une sauvegarde juste avant.
+
 ## Mises à jour
 
 Les mises à jour sont publiées sur l'adresse ci-dessus. L'appli les récupère toute seule à la prochaine ouverture avec Internet, sans perdre les données.

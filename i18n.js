@@ -124,6 +124,14 @@
     'Données restaurées': 'تم استرجاع البيانات', 'Code PIN changé': 'تم تغيير الرمز السري', 'Erreur': 'خطأ',
     // Journal (actions fixes)
     'Connexion': 'تسجيل الدخول', 'A changé son code PIN': 'غيّر رمزه السري', 'A modifié les paramètres': 'عدّل الإعدادات',
+    'Réinitialiser tout': 'إعادة تعيين الكل', 'Réinitialiser tout ?': 'إعادة تعيين الكل؟',
+    'Efface toutes les opérations : sessions, ventes, encaissements, caisse, mouvements de stock, tournois et journal. Les soldes des clients (heures, points, crédit) sont remis à zéro. Les postes, tarifs, produits, clients et utilisateurs sont conservés.':
+      'يحذف كل العمليات: الجلسات، المبيعات، التحصيلات، الصندوق، حركات المخزون، الدورات والسجل. تُصفّر أرصدة الزبائن (الساعات، النقاط، الديون). تُحفظ الأجهزة والأسعار والمنتجات والزبائن والمستخدمون.',
+    "Cette action efface définitivement toutes les opérations de ce téléphone. Faites d'abord une sauvegarde si vous voulez pouvoir revenir en arrière.":
+      'هذا الإجراء يحذف نهائيًا كل العمليات من هذا الهاتف. قم بنسخة احتياطية أولًا إن أردت التراجع لاحقًا.',
+    "Créer une sauvegarde d'abord": 'إنشاء نسخة احتياطية أولًا', 'Code de réinitialisation': 'رمز إعادة التعيين', 'Tout effacer': 'حذف الكل',
+    'Code de réinitialisation incorrect.': 'رمز إعادة التعيين غير صحيح.', 'Toutes les opérations ont été effacées': 'تم حذف كل العمليات',
+    'Réinitialisation complète des opérations': 'إعادة تعيين كاملة للعمليات',
     '1 contre 1 (2 manettes)': '1 ضد 1 (يدان)', '2 contre 2 (4 manettes)': '2 ضد 2 (4 أيادٍ)', 'Match FC': 'مباراة FC', 'Forfait 3 heures': 'باقة 3 ساعات'
   };
 

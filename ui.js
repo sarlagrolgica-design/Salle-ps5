@@ -410,7 +410,7 @@
       <button class="btn" data-go3="pin">${ico('pin')}<span>Mon code PIN</span></button>
       <button class="btn" id="logout">${ico('sortir')}<span>Changer d'utilisateur</span></button>
       <button class="btn" id="lang" data-notr><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>${window.I18N?.lang === 'ar' ? 'Français' : 'عربي'}</span></button></div>
-      <p class="hint" style="text-align:center;margin-top:18px">${h(S.params.salle_nom)} · version 1.0 · données enregistrées sur cet appareil</p>`;
+      <p class="hint" style="text-align:center;margin-top:18px">${h(S.params.salle_nom)} · version 1.1 · données enregistrées sur cet appareil</p>`;
     $$('[data-go3]').forEach(b => b.onclick = () => aller(b.dataset.go3));
     $('#logout').onclick = deconnexion;
     $('#lang').onclick = () => window.I18N.basculer();
@@ -620,12 +620,26 @@
       <div class="li"><span class="grow">Sessions enregistrées</span><span class="end">${S.sessions.length}</span></div></div>
       <button class="btn pri wide" id="sv-exp">Créer une sauvegarde</button></div>
       <div class="card" style="margin-top:14px"><h2>Restaurer</h2><p class="hint" style="margin:0 0 12px">Remplace toutes les données de ce téléphone par celles du fichier choisi. Sert aussi à passer sur un nouveau téléphone.</p>
-      <input type="file" id="sv-file" accept=".json,application/json" hidden><button class="btn danger wide" id="sv-imp">Choisir un fichier de sauvegarde</button></div>`;
+      <input type="file" id="sv-file" accept=".json,application/json" hidden><button class="btn danger wide" id="sv-imp">Choisir un fichier de sauvegarde</button></div>
+      <div class="card" style="margin-top:14px;border-color:var(--busy)"><h2>Réinitialiser tout</h2><p class="hint" style="margin:0 0 12px">Efface toutes les opérations : sessions, ventes, encaissements, caisse, mouvements de stock, tournois et journal. Les soldes des clients (heures, points, crédit) sont remis à zéro. Les postes, tarifs, produits, clients et utilisateurs sont conservés.</p>
+      <button class="btn danger wide" id="sv-reset">Réinitialiser tout</button></div>`;
     $('#sv-exp').onclick = async () => {
       const d = new Date(), nom = `sauvegarde-salle-${isoJour(d)}_${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}.json`;
       if (await partagerFichier(nom, Store.exporter(S), 'application/json')) { S.derniere_sauvegarde = Date.now(); await Store.enregistrer(S); toast('Sauvegarde créée'); rendre(); }
     };
     $('#sv-imp').onclick = () => $('#sv-file').click();
+    $('#sv-reset').onclick = () => modal(`<h2>Réinitialiser tout ?</h2><div class="sub">Cette action efface définitivement toutes les opérations de ce téléphone. Faites d'abord une sauvegarde si vous voulez pouvoir revenir en arrière.</div>
+      <button class="btn wide" id="rz-save" style="margin-bottom:12px">Créer une sauvegarde d'abord</button>
+      <div class="field"><label for="rz-code">Code de réinitialisation</label><input id="rz-code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="10"></div>
+      <div class="actions"><button class="btn" data-fermer>Annuler</button><button class="btn danger" id="rz-ok">Tout effacer</button></div>`, el => {
+      el.querySelector('#rz-save').onclick = async () => {
+        const d = new Date(), nom = `sauvegarde-avant-reinit-${isoJour(d)}_${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}.json`;
+        if (await partagerFichier(nom, Store.exporter(S), 'application/json')) { S.derniere_sauvegarde = Date.now(); await Store.enregistrer(S); toast('Sauvegarde créée'); }
+      };
+      el.querySelector('#rz-ok').onclick = async () => {
+        if (await act(() => C.reinitialiser(S, U, val('rz-code')), 'Toutes les opérations ont été effacées')) { fermer(); panier = []; destBar = 0; alertes.clear(); aller('postes'); }
+      };
+    });
     $('#sv-file').onchange = async e => {
       const f = e.target.files[0]; if (!f) return;
       try {

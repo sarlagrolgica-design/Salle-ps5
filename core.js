@@ -477,6 +477,17 @@
     [l[i], l[k]] = [l[k], l[i]]; l.forEach((x, n) => x.ordre = n);
   }
 
+  // Remise à zéro : efface toutes les opérations, garde les réglages, postes, tarifs, produits (avec leur stock actuel), clients et utilisateurs
+  const CODE_REINIT = 'LB7Z';
+  function reinitialiser(S, u, code) {
+    peut(u, 'params');
+    if (String(code || '').trim().toUpperCase() !== CODE_REINIT) fail('Code de réinitialisation incorrect.', 403);
+    for (const t of ['sessions', 'ventes_bar', 'mvt_stock', 'journees', 'mouvements', 'tournois', 'tjoueurs', 'tmatchs', 'journal']) { S[t] = []; S.seq[t] = 0; }
+    for (const c of S.clients) Object.assign(c, { minutes_prepayees: 0, points: 0, credit: 0, derniere_visite: null });
+    delete S.derniere_sauvegarde;
+    log(S, u, 'Réinitialisation complète des opérations');
+  }
+
   root.Core = {
     ROLES, DROITS, PARAMS_DEFAUT, ErreurMetier, fmt, jj, int,
     etatVide, initialiser, connexion, changerPin, prixJeu, minutesJouees,
@@ -486,6 +497,6 @@
     clients, enregistrerClient, rechargerClient, convertirPoints, reglerCredit,
     tournois, tournoi, creerTournoi, inscrire, genererTableau, score,
     rapport, rapportCSV, enregistrerUser, supprimerUser, enregistrerParams,
-    enregistrerPoste, supprimerPoste, enregistrerTarif, supprimerTarif, deplacer
+    enregistrerPoste, supprimerPoste, enregistrerTarif, supprimerTarif, deplacer, reinitialiser
   };
 })(typeof window !== 'undefined' ? window : globalThis);
