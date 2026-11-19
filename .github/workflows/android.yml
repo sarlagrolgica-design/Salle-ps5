@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     paths: ['android/**', '.github/workflows/android.yml']
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,3 +28,9 @@ jobs:
           path: |
             android/app/build/outputs/bundle/release/*.aab
             android/app/build/outputs/apk/debug/*.apk
+      - name: Copier les fichiers sur la branche android-builds
+        run: |
+          mkdir -p /tmp/o && cp app/build/outputs/bundle/release/*.aab app/build/outputs/apk/debug/*.apk /tmp/o/
+          cd /tmp/o && git init -q -b android-builds && git add . \
+            && git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com commit -qm "build ${GITHUB_SHA::7}" \
+            && git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" android-builds
