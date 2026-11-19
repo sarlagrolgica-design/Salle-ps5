@@ -1,7 +1,7 @@
 // Fonctionnement hors ligne : on garde une copie des fichiers de l'appli.
 // Changer VERSION à chaque mise à jour pour que les téléphones prennent la nouvelle version.
-const VERSION = 'salle-ps5-v1.2.1';
-const V = '?v=1.2.1';
+const VERSION = 'salle-ps5-v1.2.2';
+const V = '?v=1.2.2';
 const FICHIERS = ['./', 'index.html', 'style.css' + V, 'core.js' + V, 'store.js' + V, 'i18n.js' + V, 'ui.js' + V, 'manifest.webmanifest' + V,
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(FICHIERS.map(f => new Request(f, { cache: 'reload' })))).then(() => self.skipWaiting())); });

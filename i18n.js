@@ -268,10 +268,12 @@
     out = out.replace(/(\d+) min de jeu/g, '$1 د لعب');
     return out === core ? s : m[1] + out + m[3];
   }
+  // espace insécable dans les montants (« 4 020 ») pour qu'ils ne s'inversent pas en arabe
+  const nb = s => s && s.replace(/(\d) (?=\d{3}(?!\d))/g, '$1\u00A0');
   const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT']);
   function walk(n) {
     if (lang !== 'ar' || !n) return;
-    if (n.nodeType === 3) { if (!n.parentNode || SKIP.has(n.parentNode.nodeName)) return; const t = tr(n.nodeValue); if (t !== n.nodeValue) n.nodeValue = t; return; }
+    if (n.nodeType === 3) { if (!n.parentNode || SKIP.has(n.parentNode.nodeName)) return; const t = nb(tr(n.nodeValue)); if (t !== n.nodeValue) n.nodeValue = t; return; }
     if (n.nodeType !== 1 || n.hasAttribute('data-notr')) return;
     for (const a of ['placeholder', 'aria-label', 'title']) { const v = n.getAttribute(a); if (v) { const t = tr(v); if (t !== v) n.setAttribute(a, t); } }
     for (const c of n.childNodes) walk(c);
