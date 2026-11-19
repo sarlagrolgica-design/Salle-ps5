@@ -64,7 +64,7 @@ button{cursor:pointer}
   .top{padding-left:22px}
   .view{padding:20px 22px 28px}
 }
-.logo{width:36px;height:36px;border-radius:9px;background:var(--side-active);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;letter-spacing:.5px;flex:none}
+.logo{width:40px;height:40px;flex:none;display:block}
 .av{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:12.5px;flex:none;border:0}
 
 /* Éléments */
@@ -223,3 +223,20 @@ tfoot td{font-weight:700;border-top:2px solid var(--line)}
 [dir="rtl"] .timer{text-align:end}
 [dir="rtl"] .kpi span,[dir="rtl"] th,[dir="rtl"] .pill{letter-spacing:0;text-transform:none}
 .lang{display:block;margin:14px auto 0;border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:600}
+
+/* Animation d'ouverture */
+.splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  background:radial-gradient(120% 80% at 50% 40%,#16203a 0%,#070a12 70%);animation:spOut .45s 2.6s ease-in both}
+.splash .lg{width:min(42vw,180px);animation:lgIn .9s cubic-bezier(.2,1.4,.4,1) both,glow 1.6s .7s ease-in-out both}
+.splash .nm{font-weight:900;font-style:italic;letter-spacing:4px;font-size:22px;color:#fff;animation:up .5s .55s ease-out both;text-align:center;padding:0 16px}
+.splash .bar{width:min(46vw,200px);height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.splash .bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--k1),var(--k2));animation:load 1.3s .7s ease-in-out both}
+.splash .by{position:absolute;bottom:calc(28px + var(--sab));left:0;right:0;text-align:center;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#8b97b1;animation:fadeIn .6s 1s ease-out both;direction:ltr}
+.splash .by b{color:#fff;letter-spacing:.1em}
+@keyframes lgIn{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 18px var(--k1))}}
+@keyframes up{from{opacity:0;transform:translateY(10px);letter-spacing:14px}to{opacity:1;transform:none}}
+@keyframes load{to{width:100%}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spOut{to{opacity:0;visibility:hidden}}
+@media (prefers-reduced-motion:reduce){.splash,.splash *{animation-duration:.01s!important;animation-delay:0s!important}.splash{animation-delay:1.2s!important}}

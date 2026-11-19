@@ -16,9 +16,47 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6bff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <linearGradient id="gB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a855f7"/><stop offset="1" stop-color="#f43f5e"/></linearGradient>
+    <linearGradient id="gC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#facc15"/><stop offset="1" stop-color="#22c55e"/></linearGradient>
+    <g id="logoA">
+      <path d="M60 6 106 32.5v55L60 114 14 87.5v-55Z" fill="#0f1830" stroke="url(#gA)" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M60 18 96 38.5v43L60 102 24 81.5v-43Z" fill="none" stroke="#2f6bff" stroke-opacity=".35" stroke-width="1.5"/>
+      <g transform="translate(60 64) scale(.7) translate(-60 -66)">
+        <path d="M30 50h60a14 14 0 0 1 13.5 17.5l-4 14a8 8 0 0 1-13.5 3l-6-7H40l-6 7a8 8 0 0 1-13.5-3l-4-14A14 14 0 0 1 30 50Z" fill="url(#gA)"/>
+        <path d="M33 59v12M27 65h12" stroke="#0f1830" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="82" cy="60.5" r="3.6" fill="#0f1830"/><circle cx="90" cy="67" r="3.6" fill="#0f1830"/><circle cx="74" cy="67" r="3.6" fill="#0f1830"/><circle cx="82" cy="73.5" r="3.6" fill="#0f1830"/>
+      </g>
+    </g>
+    <g id="logoB">
+      <path d="M60 6 104 20v38c0 29-19 47-44 58C35 105 16 87 16 58V20Z" fill="#1a0d29" stroke="url(#gB)" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M80 44a24 24 0 1 0 2 22H62v-10h31a34 34 0 1 1-4-21Z" fill="url(#gB)" transform="translate(60 62) scale(.78) translate(-60 -62)"/>
+      <path d="M66 34 52 62h10l-6 26 18-32H64l8-22Z" fill="#fff" stroke="#1a0d29" stroke-width="2.5" stroke-linejoin="round"/>
+    </g>
+    <g id="logoC">
+      <rect x="8" y="8" width="104" height="104" rx="24" fill="#0a1f12" stroke="url(#gC)" stroke-width="5"/>
+      <ellipse cx="60" cy="88" rx="32" ry="10" fill="#22c55e"/>
+      <path d="M28 88v-6h64v6" fill="#15803d"/>
+      <ellipse cx="60" cy="82" rx="32" ry="10" fill="#22c55e"/>
+      <rect x="56" y="44" width="8" height="38" rx="4" fill="#d9f99d"/>
+      <circle cx="60" cy="38" r="15" fill="url(#gC)"/>
+      <circle cx="55" cy="33" r="4.5" fill="#fff" fill-opacity=".55"/>
+      <circle cx="40" cy="80" r="4" fill="#facc15"/><circle cx="80" cy="80" r="4" fill="#f43f5e"/>
+    </g>
+      <g id="logo-app"><use href="#logoA"/></g>
+  </defs>
+</svg>
+<div class="splash" id="splash" style="--k1:#2f6bff;--k2:#22d3ee">
+  <svg class="lg" viewBox="0 0 120 120" aria-hidden="true"><use href="#logo-app"/></svg>
+  <div class="nm" id="splash-nom" data-notr>GAME ROOM</div>
+  <div class="bar"><b></b></div>
+  <div class="by" data-notr>Developed by <b>Rafik Omrane</b></div>
+</div>
 <div class="app" id="app">
   <aside class="side">
-    <div class="brand"><div class="logo">PS5</div><div><b id="salle-nom">GAME ROOM</b><small>Gestion de salle</small></div></div>
+    <div class="brand"><svg class="logo" viewBox="0 0 120 120" aria-hidden="true"><use href="#logo-app"/></svg><div><b id="salle-nom">GAME ROOM</b><small>Gestion de salle</small></div></div>
     <nav class="nav" id="nav" aria-label="Menu principal"></nav>
     <div class="me"><div class="av" id="me-av">?</div><div><b id="me-nom"></b><span id="me-role"></span></div></div>
   </aside>
@@ -37,7 +75,7 @@
 
 <div class="login" id="login" hidden>
   <div class="box">
-    <div class="brand"><div class="logo">PS5</div><div><b id="login-salle">GAME ROOM</b><small>Choisissez votre compte</small></div></div>
+    <div class="brand"><svg class="logo" viewBox="0 0 120 120" aria-hidden="true"><use href="#logo-app"/></svg><div><b id="login-salle">GAME ROOM</b><small>Choisissez votre compte</small></div></div>
     <div class="users" id="login-users"></div>
     <div class="pin" id="pin"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <p class="err" id="login-err" role="alert"></p>
