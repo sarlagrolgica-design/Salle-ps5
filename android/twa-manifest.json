@@ -34,7 +34,7 @@
   "isChromeOSOnly": false,
   "isMetaQuest": false,
   "fullScopeUrl": "https://sarlagrolgica-design.github.io/Salle-ps5/",
-  "minSdkVersion": 21,
+  "minSdkVersion": 24,
   "orientation": "default",
   "fingerprints": [],
   "additionalTrustedOrigins": [],
