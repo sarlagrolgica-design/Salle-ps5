@@ -410,7 +410,7 @@
       <button class="btn" data-go3="pin">${ico('pin')}<span>Mon code PIN</span></button>
       <button class="btn" id="logout">${ico('sortir')}<span>Changer d'utilisateur</span></button>
       <button class="btn" id="lang" data-notr><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span>${window.I18N?.lang === 'ar' ? 'Français' : 'عربي'}</span></button></div>
-      <p class="hint" style="text-align:center;margin-top:18px">${h(S.params.salle_nom)} · version 1.2 · données enregistrées sur cet appareil</p>`;
+      <p class="hint" style="text-align:center;margin-top:18px">${h(S.params.salle_nom)} · version 1.2.1 · données enregistrées sur cet appareil</p>`;
     $$('[data-go3]').forEach(b => b.onclick = () => aller(b.dataset.go3));
     $('#logout').onclick = deconnexion;
     $('#lang').onclick = () => window.I18N.basculer();
@@ -721,7 +721,7 @@
   (async function start() {
     S = await Store.charger() || C.etatVide();
     await C.initialiser(S); await Store.enregistrer(S);
-    $('#splash-nom').textContent = S.params.salle_nom;
+    const sn = $('#splash-nom'); if (sn) sn.textContent = S.params.salle_nom;
     setTimeout(() => $('#splash')?.remove(), 3200);
     // les forfaits déjà dépassés au lancement ne sonnent pas
     const now = Date.now();
